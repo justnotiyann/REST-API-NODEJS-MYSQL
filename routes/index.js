@@ -1,13 +1,16 @@
-var express = require('express');
-var router = express.Router();
+var router = require('express').Router();
+const {getProducts,addProducts} = require('../controllers/Products')
 
-/* GET home page. */
+// Display Data Productss
+
 router.get('/', function(req, res, next) {
-  res.render('tambah-products',
+  res.render('index',
     {
       layout: './layout/main',
       title:'Halaman Utama'
   })
 });
+
+router.post('/add',addProducts)
 
 module.exports = router;

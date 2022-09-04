@@ -2,21 +2,11 @@ const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../config/db')
 
 const Users = db.define('Users', {
-  nama: {
-    type: DataTypes.STRING
-  },
-  email:{
-    type: DataTypes.STRING
-  },
-  password: {
-    type: DataTypes.STRING
-  },
-  alamat:{
-    type: DataTypes.STRING
-  },
-  nomor_hp:{
-    type: DataTypes.STRING
-  }
+  nama      : DataTypes.STRING,
+  email     : DataTypes.STRING,
+  password  : DataTypes.STRING,
+  alamat    : DataTypes.STRING,
+  nomor_hp  : DataTypes.STRING,
 },{
    freezeTableName: true,
     timestamps: false,

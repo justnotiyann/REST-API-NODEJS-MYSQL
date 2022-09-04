@@ -1,22 +1,13 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../config/db')
 
+
 const Products = db.define('Products', {
-  judul_buku: {
-    type: DataTypes.STRING
-  },
-  penulis:{
-    type: DataTypes.STRING
-  },
-  genre: {
-    type: DataTypes.STRING
-  },
-  jenis_buku:{
-    type: DataTypes.STRING
-  },
-  penerbit:{
-    type: DataTypes.STRING
-  }
+  judul_buku: DataTypes.STRING,
+  penulis: DataTypes.STRING,
+  genre: DataTypes.STRING,
+  jenis_buku:DataTypes.STRING,
+  penerbit:DataTypes.STRING
 },{
    freezeTableName: true,
     timestamps: false,
