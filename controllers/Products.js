@@ -4,7 +4,7 @@ const getProducts = async(req,res) =>{
   const result = await Products.findAll({})
   if(!result) res.json({msg:'Gagal ambil data woi !, cek lagi dah'})
   if(result >= 0) res.json({msg:'Data belum ada bwanggg'})
-  res.json({msg:result})
+  res.send(result)
 }
 
 const addProducts = async(req,res) =>{
@@ -19,6 +19,5 @@ const addProducts = async(req,res) =>{
   if(!result) res.json({msg:'Gagal buat data woi !, cek lagi bolot'})
   res.json({msg:"Berhasil dong siapa duluu 😎"})
 }
-
 
 module.exports = {getProducts,addProducts}
