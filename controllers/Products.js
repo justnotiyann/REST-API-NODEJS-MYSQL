@@ -1,5 +1,8 @@
 const Products = require("../models/Products");
-// CREATE READ UPDATE DELETE
+
+const getHome = async (req, res) => {
+  res.json("Hai");
+};
 
 const getProducts = async (req, res) => {
   const result = await Products.findAll({});
@@ -9,19 +12,21 @@ const getProducts = async (req, res) => {
 };
 
 const addProducts = async (req, res) => {
-  const { judul_buku, penulis, genre, jenis_buku, penerbit } = req.body;
-  const result = await Products.create({
-    judul_buku: judul_buku,
-    penulis: penulis,
-    genre: genre,
-    jenis_buku: jenis_buku,
-    penerbit: penerbit,
-  });
-  if (!result) res.json({ msg: "Gagal buat data woi !, cek lagi bolot" });
-  res.json({
-    msg: "Data berhasil ditambahkan",
-    result,
-  });
+  const { title, author } = req.body;
+  if (req.file.mimetype === "image/jpeg" || req.file.mimetype === "image/jpg" || req.file.mimetype === "image/png") {
+    const result = await Products.create({
+      title: title,
+      author: author,
+      avatar: req.file.path,
+    });
+    if (!result) res.json("Gagal membuat data");
+    res.json({
+      msg: "Data berhasil ditambahkan",
+      result,
+    });
+  } else {
+    res.json({ msg: "Format tidak didukung, Pastikan hanya JPEG,JPG,PNG" });
+  }
 };
 
 const deleteProducts = async (req, res) => {
@@ -31,7 +36,7 @@ const deleteProducts = async (req, res) => {
   const result = await Products.destroy({
     where: { id: id },
   });
-  if (!result) res.json({ erorr: 500, msg: "Terjadi kesalahan" });
+  if (!result) res.json({ msg: "Terjadi kesalahan" });
   res.json({
     msg: "Berhasil hapus data",
   });
@@ -39,16 +44,14 @@ const deleteProducts = async (req, res) => {
 
 const updateProducts = async (req, res) => {
   const id = req.params.id;
-  const { judul_buku, penulis, genre, jenis_buku, penerbit } = req.body;
+  const { title, author } = req.body;
   const idData = await Products.findOne({ where: { id: id } });
   if (!idData) res.json({ msg: "Data tidak ditemukan" });
   const result = await Products.update(
     {
-      judul_buku: judul_buku,
-      penulis: penulis,
-      genre: genre,
-      jenis_buku: jenis_buku,
-      penerbit: penerbit,
+      title: title,
+      author: author,
+      avatar: req.file.path,
     },
     { where: { id: id } }
   );
@@ -58,4 +61,4 @@ const updateProducts = async (req, res) => {
   });
 };
 
-module.exports = { getProducts, addProducts, deleteProducts, updateProducts };
+module.exports = { getHome, getProducts, addProducts, deleteProducts, updateProducts };

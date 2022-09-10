@@ -4,10 +4,11 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var ejsLayout = require("express-ejs-layouts");
+const port = process.env.PORT || 3000;
 require("dotenv").config();
-
 var app = express();
-app.listen(3000, () => {
+
+app.listen(port, () => {
   console.log("server berjalan");
 });
 

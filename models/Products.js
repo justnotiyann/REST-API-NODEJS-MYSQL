@@ -1,20 +1,21 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const db = require('../config/db')
+const { Sequelize, DataTypes } = require("sequelize");
+const db = require("../config/db");
 
-
-const Products = db.define('Products', {
-  judul_buku: DataTypes.STRING,
-  penulis: DataTypes.STRING,
-  genre: DataTypes.STRING,
-  jenis_buku:DataTypes.STRING,
-  penerbit:DataTypes.STRING
-},{
-   freezeTableName: true,
+const Products = db.define(
+  "Products",
+  {
+    title: DataTypes.STRING,
+    author: DataTypes.STRING,
+    avatar: DataTypes.STRING,
+  },
+  {
+    freezeTableName: true,
     timestamps: false,
-});
+  }
+);
 
-const result  = Products.sync({})
-if(!result) throw error
-console.log('Berhasil membuat database')
+const result = Products.sync({});
+if (!result) throw error;
+console.log("Berhasil membuat database");
 
-module.exports = Products
+module.exports = Products;

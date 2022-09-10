@@ -1,13 +1,10 @@
 const router = require("express").Router();
-const { getProducts, addProducts, deleteProducts, updateProducts } = require("../controllers/Products");
+const Products = require("../controllers/Products");
+const upload = require("../config/multer");
 
-router.get("/", (req, res) => {
-  res.json("Hai vroh");
-});
-
-router.get("/detail", getProducts);
-router.get("/add", addProducts);
-router.delete("/delete/:id", deleteProducts);
-router.post("/update/:id", updateProducts);
-
+router.get("/", Products.getHome);
+router.get("/detail", Products.getProducts);
+router.post("/add", upload.single("avatar"), Products.addProducts);
+router.delete("/delete/:id", Products.deleteProducts);
+router.post("/update/:id", Products.updateProducts);
 module.exports = router;
