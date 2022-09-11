@@ -23,6 +23,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 const routerProducts = require("./routes/Products");
+const routerUsers = require('./routes/Users')
+app.use('/users',routerUsers)
 app.use("/products", routerProducts);
 
 module.exports = app;

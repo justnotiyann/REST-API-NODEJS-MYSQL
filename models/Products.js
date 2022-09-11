@@ -1,17 +1,17 @@
-const { Sequelize, DataTypes } = require("sequelize");
+const {Sequelize, DataTypes} = require("sequelize");
 const db = require("../config/db");
 
 const Products = db.define(
-  "Products",
-  {
-    title: DataTypes.STRING,
-    author: DataTypes.STRING,
-    avatar: DataTypes.STRING,
-  },
-  {
-    freezeTableName: true,
-    timestamps: false,
-  }
+	"Products",
+	{
+		title: DataTypes.STRING,
+		author: DataTypes.STRING,
+		avatar: DataTypes.STRING
+	},
+	{
+		freezeTableName: true,
+		timestamps: false
+	}
 );
 
 const result = Products.sync({});
