@@ -23,21 +23,16 @@ const getProductsById = async (req, res) => {
 };
 
 const addProducts = async (req, res) => {
-	const {title, author} = req.body;
 	if (
 		req.file.mimetype === "image/jpeg" ||
 		req.file.mimetype === "image/jpg" ||
 		req.file.mimetype === "image/png"
 	) {
-		const result = await Products.create({
-			title: title,
-			author: author,
-			avatar: req.file.path
-		});
+		const result = await Products.create({...req.body, avatar: req.file.path});
 		if (!result) res.json("Gagal membuat data");
 		res.json({
 			msg: "Data berhasil ditambahkan",
-			result
+			responses: [result]
 		});
 	} else {
 		res.json({msg: "Format tidak didukung, Pastikan hanya JPEG,JPG,PNG"});
