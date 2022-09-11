@@ -11,6 +11,17 @@ const getProducts = async (req, res) => {
   res.json(result);
 };
 
+const getProductsById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const result = await Products.findAll({ where: { id: id } });
+    if (!result) res.json({ msg: "Data tidak ditemukan" });
+    res.json(result);
+  } catch (e) {
+    res.json(e);
+  }
+};
+
 const addProducts = async (req, res) => {
   const { title, author } = req.body;
   if (req.file.mimetype === "image/jpeg" || req.file.mimetype === "image/jpg" || req.file.mimetype === "image/png") {
@@ -61,4 +72,4 @@ const updateProducts = async (req, res) => {
   });
 };
 
-module.exports = { getHome, getProducts, addProducts, deleteProducts, updateProducts };
+module.exports = { getHome, getProducts, addProducts, deleteProducts, updateProducts, getProductsById };
