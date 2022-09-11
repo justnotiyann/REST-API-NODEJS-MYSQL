@@ -16,7 +16,7 @@ const getProductsById = async (req, res) => {
     const id = req.params.id;
     const result = await Products.findAll({ where: { id: id } });
     if (!result) res.json({ msg: "Data tidak ditemukan" });
-    res.json(result);
+    res.json({ responses: result });
   } catch (e) {
     res.json(e);
   }
