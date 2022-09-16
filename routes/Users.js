@@ -1,10 +1,11 @@
 const router = require("express").Router();
 const Users = require("../controllers/Users");
+const validate = require("../middleware/Validator");
 
 router.get("/", Users.getIndex);
 router.get("/detail", Users.getUsers);
 router.post("/add", Users.addUser);
 router.post("/edit/:id", Users.editUser);
-router.get("/delete/:id", Users.deleteUser);
+router.delete("/delete/:id", Users.deleteUser);
 
 module.exports = router;

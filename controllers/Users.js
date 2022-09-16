@@ -8,10 +8,11 @@ const getIndex = (req, res) => {
 const getUsers = async (req, res) => {
 	try {
 		const result = await Users.findAll({});
+		if (result <= 0) res.json({msg: "Data belum ada"});
 		if (!result) res.json("Terjadi kesalahan");
 		res.json({msg: "Data semua users", result});
 	} catch (e) {
-		throw e;
+		throw e.message;
 	}
 };
 

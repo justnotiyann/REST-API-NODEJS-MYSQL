@@ -16,8 +16,8 @@ const Users = db.define(
 	}
 );
 
-const result = Users.sync({});
-if (!result) throw error;
-console.log("Berhasil membuat database");
+// const result = Users.sync({});
+// if (!result) throw error;
+// console.log("Berhasil membuat database");
 
 module.exports = Users;

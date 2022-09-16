@@ -13,8 +13,8 @@ const Admins = db.define(
 	}
 );
 
-const result = Admins.sync({});
-if (!result) throw error;
-console.log("Berhasil membuat database");
+// const result = Admins.sync({});
+// if (!result) throw error;
+// console.log("Berhasil membuat database");
 
 module.exports = Admins;

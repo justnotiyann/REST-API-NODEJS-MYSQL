@@ -14,8 +14,8 @@ const Products = db.define(
 	}
 );
 
-const result = Products.sync({});
-if (!result) throw error;
-console.log("Berhasil membuat database");
+// const result = Products.sync({});
+// if (!result) throw error;
+// console.log("Berhasil membuat database");
 
 module.exports = Products;
