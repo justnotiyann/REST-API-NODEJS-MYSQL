@@ -4,7 +4,7 @@ const validate = require("../middleware/Validator");
 
 router.get("/", Users.getIndex);
 router.get("/detail", Users.getUsers);
-router.post("/add", Users.addUser);
+router.post("/add", validate.validateEmail, Users.addUser);
 router.post("/edit/:id", Users.editUser);
 router.delete("/delete/:id", Users.deleteUser);
 
